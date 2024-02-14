@@ -1,0 +1,82 @@
+<div>
+<div class="user-auth">
+    <div *ngIf="!showLogin" class="sign-up">
+      <h1>User Sign-up</h1>
+      <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)" class="common-form">
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Enter Name"
+          name="name"
+          ngModel
+          #name="ngModel"
+          required
+        />
+        <p><span class="text-danger" *ngIf="name.invalid && name.touched">Please Enter Username</span></p>
+        <input
+          type="password"
+          class="form-input"
+          placeholder="Enter Password"
+          name="password"
+          ngModel
+          #password="ngModel"
+          required
+          minlength="4"
+          maxlength="10"
+        />
+        <p><span class="text-danger" *ngIf="password.invalid &&  password.touched">InvalidPassword </span></p>
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Enter Email"
+          name="email"
+          ngModel
+          #email="ngModel"
+          email
+          required
+        />
+        <p><span class="text-danger" *ngIf="email.invalid && email.touched">Invalid Email</span></p>
+        <button [disabled]="userSignUp.invalid" class="form-button">Sign Up</button>
+        <a class="auth-toggle-link" (click)="openLogin()">Already Have Account? Click to Login</a>
+        
+      </form>
+    </div>
+<div>
+    <!-- Login Area -->
+    <div *ngIf="showLogin" class="login">
+        <h1>User Login</h1>
+        <form #userLogin="ngForm" (ngSubmit)="login(userLogin.value)" class="common-form">
+          <p class="error-p">{{authError}}</p>
+          <input
+            type="text"
+            class="form-input"
+            placeholder="Enter Email"
+            name="email"
+            ngModel
+            #email="ngModel"
+            required
+            email
+          />
+        <p><span class="text-danger"  *ngIf="email.invalid && email.touched ">Invalid Email</span></p>
+          <input
+            type="password"
+            class="form-input"
+            placeholder="Enter Password"
+            name="password"
+            ngModel
+            #password="ngModel" 
+            required
+            minlength="4"
+            maxlength="10"
+            
+          />
+          <p><span *ngIf="password.invalid && password.touched"  class="text-danger">Invalid Password</span></p>
+          
+          <button [disabled]="userLogin.invalid" class="form-button">Login</button>
+          <a class="auth-toggle-link" (click)="openSignUp()"> Click to Sign-Up new account</a>
+          
+        </form>
+      </div>
+    </div>
+  
+   

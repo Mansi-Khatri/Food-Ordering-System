@@ -1,0 +1,30 @@
+<div class="container" *ngIf="productData">
+    <img src="{{productData.image}}" alt="{{productData.name}}">
+
+<div>
+<div class="details">
+    <div class="header">
+        <span class="name">{{productData.name}}</span>
+    </div>
+   
+    <div class="origins">
+        <span > {{productData.category}}</span>
+    </div> 
+    
+    <div class="cook-time">
+        <span>Time to cook about <strong>{{productData.time}}</strong> Minutes</span>
+    </div>
+    <div class="price">
+        <span>{{productData.price |currency:'INR'}}</span>
+    </div>
+    <div>
+        <span>
+            <button (click)="quantityFun('min')" class="button-size">-</button><input class="quant" type="text" value="{{productQuantity}}"/><button (click)="quantityFun('max')" class="button-size">+</button>
+        </span>
+    </div>
+</div>
+<button *ngIf="!removeCart" class="form-button" (click)="addToCart()">Add to Cart</button>
+<button *ngIf="removeCart" class="form-button" (click)="removeToCart(productData.id)">Remove Item</button> 
+
+</div>
+</div>
